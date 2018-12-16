@@ -1,0 +1,36 @@
+use jadrn074;
+
+drop table if exists person;
+
+create table person(
+    file varchar(20) NOT NULL,
+    fname varchar(50) NOT NULL,
+	lname varchar(50) NOT NULL,
+    address varchar(100) NOT NULL,
+    city varchar(30) NOT NULL,
+    state char(2) NOT NULL,
+    zip char(5) NOT NULL,
+	area_phone char(15) NOT NULL,
+	prefix_phone  char(15) NOT NULL,
+	suphone char(15) NOT NULL,
+    email varchar(50) NOT NULL,
+	gender char(10) NOT NULL,
+	month varchar(15) NOT NULL,
+	day varchar(15) NOT NULL,
+	year varchar(15) NOT NULL,
+	ExpL char(15) NOT NULL,
+	Categ char(15) NOT NULL);
+	
+	
+	
+    
+INSERT INTO person VALUES('Jim.jpg','Jim','Robeson','3456 30th St','San Diego','CA','92104','619','719','9039','jrobeson@yahoo.com','M','02','05','1996','Expert','Novice');    
+INSERT INTO person VALUES('Robert.jpg','Robert','Jones','1512 Abbott St','San Diego','CA','92106','756','487','9216','rjones@gmail.com','M','06','06','1995','Novice','Teen');
+INSERT INTO person VALUES('Henry.jpg','Henry','Carter','914 Albion St','San Diego','CA','92106','692','587','9892','hcarter@yahoo.com','M','08','22','1978','Experienced','Adult');
+INSERT INTO person VALUES('Jason.jpg','Jason','Johnson','225 7th St','San Diego','CA','92103','456','487','9458','jjson@gmail.com','M','05','30','1988','Expert','Novice');
+INSERT INTO person VALUES('Bill.jpg','Bill','Krump','1445 Camino Del Rio','San Diego','CA','92108','988','987','9369','bkrmp@gmail.com','M','01','05','1989', 'Expert', 'Adult');
+INSERT INTO person VALUES('Matt.jpg','Matt','Mathison','887 10 St','San Diego','CA','92101','456','487','9789','mmathison12@gmail.com','M','02','05','1990', 'Experienced','Adult');
+INSERT INTO person VALUES('Sam.jpg','Sam','Stevens','6782 Ivy St','San Diego','CA','92103','235','677','9999','sam.stevens@gmail.com','M','08','09','1968', 'Expert', 'Teen');
+INSERT INTO person VALUES('Jerome.jpg','Jerome','Jacobs','5354 Maple St','San Diego','CA','92103','456','487','9824','jjacobs@mail.sdsu.edu','M','11','03','1996', 'Novice', 'Novice');
+INSERT INTO person VALUES('Adam.jpg','Adam','Selig','3634 7th Ave','San Diego','CA','92103','256','487','9355','superstar156@yahoo.com','M','02','05','1985', 'Expert', 'Teen');
+INSERT INTO person VALUES('Sally.jpg','Sally','Reese','2910 Market St','San Diego','CA','92101','326','487','9216','sallyR@cox.net','M','09','05','1982', 'Experienced', 'Adult');

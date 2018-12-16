@@ -1,0 +1,82 @@
+<!--code by Sainadh Ainala jadrn074  Project#3 Fall 2017------->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<title> Marathon - Sign Up </title>
+<link rel="stylesheet" type="text/css" href="form.css" />
+<script type="text/javascript"  src="/jquery/jquery.js"></script>
+<script type="text/javascript" src="img_get_lib.js"></script>
+<script type="text/javascript" src="form23.js"></script>
+</head>
+<body>
+<div  id='att'><a href="index.html"><img src="SDSU.gif" alt="SDSU logo" width="200px" height="auto" /></a></div>
+<h1> Create your Marathon Registration Account </h1>
+<fieldset>
+<legend> Personal Information </legend>
+<form name ="Personalinfo"  method = "post" enctype= "multipart/form-data" action="process_request.php"  >
+<ul>
+<li><label for="file">Runner's Image</label>
+<input type="file" name="file"  accept = "image/*" />
+<input type="button" value="Upload File" id="submit_button" />
+</li>
+ 
+  <li><label for="fname">First name:</label>
+  <input type="text" name="fname" id="fname" size="20" maxlength="20" ><br />
+  <label for ="mname">Middle name:</label>
+  <input type="text" name="mname" id="mname" size="20" maxlength="20" ><br />
+  <label for="lname">Last name:</label>
+  <input type="text" name="lname" id="lname" size="20" maxlength="20" ></li>
+  <li><label for="address">Address:</label>
+  <input type="text" name="address" id="address" size="50" maxlength="50"  ><br />
+  <label for="address2">Address2:</label>
+  <input type="text" name="address2" id="address2" size="50" maxlength="50" ></li>
+   <li><label for="city">City:</label>
+  <input type="text" name="city" id="city" size="25" maxlength="25" >
+   <label for="state">State:</label>
+  <input type="text" name="state" id="state" size="3" maxlength="3" ><br />
+  <label for="zip">Zipcode:</label>
+  <input type="text" name="zip" id="zip" size="10" maxlength="10" ></li>
+  
+  <li><label for="phone">Primary phone:</label>
+ ( <input type="text" name="area_phone" id="aphone" size="4" maxlength = "3" />)
+  <input type="text" name="prefix_phone"  id="pphone"size="4" maxlength = "3" />
+  <input type="text" name="suphone" size="5"  id="sphone" maxlength = "4" /></li>
+  <li><label for= "email">Email:</label>
+   <input type="email" name="email" id="email"  size="25"  maxlength="25" autocomplete="on"><br></li>
+  <li><label for="gender">Gender:</label><br />
+   <input type="radio" name="gender"  id="male" value="M"> Male
+   <input type="radio" name="gender" id="female" value="F"> Female
+   <input type="radio" name="gender" id="other" value="O"> Other<br></li>
+   <li><label for="bday">Date of Birth :</label>
+   mm <input type="text"  name="month" id="m" size="2"  maxlength="2" />
+    dd <input type="text" name="day" id="d" size="2" maxlength="2" />
+    yyyy <input type="text" name="year" id="y" size="4" maxlength="4" />        
+   <br></li>
+   <li><label>Medical Conditions :</label><br />
+   <textarea rows="7" cols="70"></textarea><br></li>
+  <li><label for="ExpL">Experience Level :</label>
+   <input type="radio" name="ExpL" id="Exp1" value="Expert">Expert
+   <input type="radio" name="ExpL"  id="Exp2"value="Experienced">Experienced
+   <input type="radio" name="ExpL"  id="Exp3" value="Novice">Novice</li>
+  <li><label for="Categ">Category : </label>
+   <input type="radio" name="Categ"  id="c1" value="Teen">Teen 
+   <input type="radio" name="Categ"  id="c2" value="Adult">Adult
+   <input type="radio" name="Categ"  id="c3" value="Novice">Novice</li>
+   </ul>
+  <div id="message_line">&nbsp;</div>
+  <div id ="button_panel" >
+  <input type="reset" value ="Reset" />
+  <input type="submit" value="Submit" />
+  </div>
+ <h3 id="status">&nbsp;</h3>
+<h3 id="answer"></h3>
+</form> 
+</fieldset>
+<h3 id="status">&nbsp;</h3>
+<h3 id="answer"></h3>
+</body>
+</html>

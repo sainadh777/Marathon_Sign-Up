@@ -1,0 +1,104 @@
+<?php
+
+function validate_data($params) {
+    $msg = "";
+    if(strlen($params[0]) == 0)
+        $msg .= "Please enter the name<br />";  
+    if(strlen($params[1]) == 0)
+        $msg .= "Please enter the address<br />"; 
+    if(strlen($params[2]) == 0)
+        $msg .= "Please enter the city<br />"; 
+    if(strlen($params[3]) == 0)
+        $msg .= "Please enter the state<br />";                        
+    if(strlen($params[4]) == 0)
+        $msg .= "Please enter the zip code<br />";
+    elseif(!is_numeric($params[4])) 
+        $msg .= "Zip code may contain only numeric digits<br />";
+    if(strlen($params[5]) == 0)
+        $msg .= "Please enter email<br />";
+    elseif(!filter_var($params[5], FILTER_VALIDATE_EMAIL))
+        $msg .= "Your email appears to be invalid<br/>";        
+    if($msg) {
+        write_form_error_page($msg);
+        exit;
+        }
+    }
+  
+function write_form_error_page($msg) {
+    write_header();
+    echo "<h2>Sorry, an error occurred<br />",
+    $msg,"</h2>";
+    write_form();
+    write_footer();
+    }  
+    
+function write_form() {
+    print <<<ENDBLOCK
+	<fieldset>
+	<legend>Personal Information</legend>
+        <form  
+        name="customer"
+        method="post" 
+        action="process_request.php">
+            <label for="name">Name:</label>
+            <label for="address">Address:</label>
+            <label for="city">City:</label>
+            <label for="state">State:</label>
+            <label for="zip">Zipcode:</label>                                                
+            <label for="email">Email:</label> 
+
+            <input type="text" name="name" value="$_POST[name]" size="30" id="name" /><br />
+            <input type="text" name="address" value="$_POST[address]"  size="50" id="address" /><br />
+            <input type="text" name="city" value="$_POST[city]"  size="20" id="city"/><br />
+            <input type="text" name="state" value="$_POST[state]"  size="5" id="state"/><br />
+            <input type="text" name="zip" value="$_POST[zip]"  size="10" id="zip"/><br />
+            <input type="text" name="email" value="$_POST[email]"  size="20" id="email"/><br />            
+            <div class="buttons">
+            <input type="reset" />
+            <input type="submit" value="Submit" />
+            </div>        
+        </form>   
+	</fieldset> 
+ENDBLOCK;
+}                        
+
+function process_parameters($params) {
+    global $bad_chars;
+    $params = array();
+    $params[] = trim(str_replace($bad_chars, "",$_POST['name']));
+    $params[] = trim(str_replace($bad_chars, "",$_POST['address']));
+    $params[] = trim(str_replace($bad_chars, "",$_POST['city']));
+    $params[] = trim(str_replace($bad_chars, "",$_POST['state']));
+    $params[] = trim(str_replace($bad_chars, "",$_POST['zip']));
+    $params[] = trim(str_replace($bad_chars, "",$_POST['email']));
+    return $params;
+    }
+    
+function store_data_in_db($params) {
+    # get a database connection
+    $db = get_db_handle();  ## method in helpers.php
+    ##############################################################
+    $sql = "SELECT * FROM person WHERE ".
+    "name='$params[0]' AND ".
+    "address = '$params[1]' AND ".
+    "city = '$params[2]' AND ".
+    "state = '$params[3]' AND ".
+    "zip = '$params[4]' AND ".
+    "email = '$params[5]';";
+##echo "The SQL statement is ",$sql;    
+    $result = mysqli_query($db, $sql);
+    if(mysqli_num_rows($result) > 0) {
+        write_form_error_page('This record appears to be a duplicate');
+        exit;
+        }
+##OK, duplicate check passed, now insert
+    $sql = "INSERT INTO person(name,address,city,state,zip,email) ".
+    "VALUES('$params[0]','$params[1]','$params[2]','$params[3]','$params[4]','$params[5]');";
+##echo "The SQL statement is ",$sql;    
+    mysqli_query($db,$sql);
+    $how_many = mysqli_affected_rows($db);
+    echo("There were $how_many rows affected");
+    close_connector($db);
+    }
+        
+?>   
